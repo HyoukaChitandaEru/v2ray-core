@@ -44,7 +44,7 @@ vi  /etc （找到 v2ray 目录下的 config.json进行修改）或者 vi /etc/v
 "settings": {
 "method": "aes-256-cfb",
 "password": "shan2699562239",
-"udp": false
+"udp": false //true也无妨
 }
 }
 ],
