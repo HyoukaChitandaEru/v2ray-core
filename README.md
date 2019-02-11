@@ -15,8 +15,8 @@
 
 Project V is a set of network tools that help you to build your own computer network. It secures your network connections and thus protects your privacy. See [our website](https://www.v2ray.com/) for more information.
 
-## How to install?(如何安装？)
-
+## How to install?(点开修改README.md，直接在外面看格式都乱的)
+或者点开 How to install.sh 安装代码指令都在里面
 git clone https://github.com/HyoukaChitandaEru/v2ray-core
 cd v2ray-core
 chmod +x V2rayGo-Install.sh
