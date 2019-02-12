@@ -13,6 +13,7 @@ vi  /etc （找到 v2ray 目录下的 config.json进行修改）或者 vi /etc/v
 
 1、以下是服务器配置，将服务器 /etc/v2ray 目录下的 config.json 文件修改成下面的内容，修改完成后要重启 V2Ray 才会使修改的配置生效。
 
+
 {
 "log": {
 "access": "/var/log/v2ray/access.log",
@@ -40,16 +41,6 @@ vi  /etc （找到 v2ray 目录下的 config.json进行修改）或者 vi /etc/v
 "alterId": 64
 }
 ]
-}
-},
-"inbound": {
-"protocol": "shadowsocks",
-"port": 10086,
-"settings": {
-"method": "aes-256-cfb",
-"password": "shan2699562239",
-"udp": true,
-"level": 1
 }
 },
 "outbound": {
@@ -101,6 +92,15 @@ vi  /etc （找到 v2ray 目录下的 config.json进行修改）或者 vi /etc/v
 "alterId": 64
 }
 ]
+}
+},
+{
+"port": 10080,
+"protocol": "shadowsocks",
+"settings": {
+"method": "aes-256-cfb",
+"password": "shan2699562239",
+"udp": true
 }
 }
 ],
