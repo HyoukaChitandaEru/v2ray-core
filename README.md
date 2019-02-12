@@ -31,40 +31,132 @@ vi  /etc （找到 v2ray 目录下的 config.json进行修改）或者 vi /etc/v
 1、以下是服务器配置，将服务器 /etc/v2ray 目录下的 config.json 文件修改成下面的内容，修改完成后要重启 V2Ray 才会使修改的配置生效。
 
 {
-  "inbounds": [
-    {
-      "port": 16823, // 服务器监听端口
-      "protocol": "vmess",    // 主传入协议
-      "settings": {
-        "clients": [
-          {
-            "id": "b831381d-6324-4d53-ad4f-8cda48b30811",  // 用户 ID，客户端与服务器必须相同
-            "alterId": 64
-          }
-        ]
-      }
-    }
-  ],
-  "outbounds": [
-    {
-      "protocol": "freedom",  // 主传出协议
-      "settings": {}
-    }
-  ]
-}
-
-2、添加ss协议兼容，在1.中"outbounds": 上一行插入如下内容
-"inboundDetour": [
+"log": {
+"access": "/var/log/v2ray/access.log",
+"error": "/var/log/v2ray/error.log",
+"loglevel": "warning"
+},
+"inbound": {
+"port": 2233,
+"protocol": "vmess",
+"settings": {
+"clients": [
 {
+"id": "1d9aa805-5d0f-d2c7-52df-24fc7e31dfa2",
+"level": 1,
+"alterId": 64
+},
+{
+"id": "1239d019-f12d-28a5-72ac-83d3ee3725ab",
+"level": 1,
+"alterId": 64
+},
+{
+"id": "5fc205ad-e659-802f-0aa5-53b5b6ed6a40",
+"level": 1,
+"alterId": 64
+}
+]
+}
+},
+"inbound": {
 "protocol": "shadowsocks",
-"port": 2333,
+"port": 10086,
 "settings": {
 "method": "aes-256-cfb",
 "password": "shan2699562239",
-"udp": false
+"udp": true,
+"level": 1
+}
+},
+"outbound": {
+"protocol": "freedom",
+"settings": {}
+},
+"inboundDetour": [
+{
+"port": 2333,
+"protocol": "vmess",
+"settings": {
+"clients": [
+{
+"id": "1d9aa805-5d0f-d2c7-52df-24fc7e31dfa2",
+"level": 1,
+"alterId": 64
+},
+{
+"id": "1239d019-f12d-28a5-72ac-83d3ee3725ab",
+"level": 1,
+"alterId": 64
+},
+{
+"id": "5fc205ad-e659-802f-0aa5-53b5b6ed6a40",
+"level": 1,
+"alterId": 64
+}
+]
+}
+},
+{
+"port": 10000,
+"protocol": "vmess",
+"settings": {
+"clients": [
+{
+"id": "1d9aa805-5d0f-d2c7-52df-24fc7e31dfa2",
+"level": 1,
+"alterId": 64
+},
+{
+"id": "1239d019-f12d-28a5-72ac-83d3ee3725ab",
+"level": 1,
+"alterId": 64
+},
+{
+"id": "5fc205ad-e659-802f-0aa5-53b5b6ed6a40",
+"level": 1,
+"alterId": 64
+}
+]
 }
 }
 ],
+"outboundDetour": [
+{
+"protocol": "blackhole",
+"settings": {},
+"tag": "blocked"
+}
+],
+"routing": {
+"strategy": "rules",
+"settings": {
+"rules": [
+{
+"type": "field",
+"ip": [
+"0.0.0.0/8",
+"10.0.0.0/8",
+"100.64.0.0/10",
+"127.0.0.0/8",
+"169.254.0.0/16",
+"172.16.0.0/12",
+"192.0.0.0/24",
+"192.0.2.0/24",
+"192.168.0.0/16",
+"198.18.0.0/15",
+"198.51.100.0/24",
+"203.0.113.0/24",
+"::1/128",
+"fc00::/7",
+"fe80::/10"
+],
+"outboundTag": "blocked"
+}
+]
+}
+}
+}
 
 
 
